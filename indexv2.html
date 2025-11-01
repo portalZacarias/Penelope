@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>caso de Penélope...</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: black;
+      height: 100%;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    video {
+      display: none;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+  <video id="scary-video" src="VID_20251101_143525.mp4" playsinline></video>
+
+  <script>
+    const video = document.getElementById("scary-video");
+
+    document.body.addEventListener("click", async () => {
+      document.body.style.background = "black";
+      video.style.display = "block";
+      video.muted = false;
+      try {
+        if (document.body.requestFullscreen) {
+          await document.body.requestFullscreen();
+        } else if (document.body.webkitRequestFullscreen) {
+          await document.body.webkitRequestFullscreen();
+        }
+        await video.play();
+      } catch (err) {
+        console.error("Erro ao tentar reproduzir o vídeo:", err);
+      }
+    });
+  </script>
+</body>
+</html>
